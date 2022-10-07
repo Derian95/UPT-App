@@ -1,3 +1,5 @@
 export * from './Login'
 export * from './Home'
 export * from './Notes'
+export * from './Attendance'
+export * from './Schedule'

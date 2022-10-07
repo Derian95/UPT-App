@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 
-export const Horario = () => {
+export const Schedule = () => {
   return (
     <View>
         <Text>

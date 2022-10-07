@@ -2,10 +2,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { propsNavigationStack } from './models'
 
-import { Home, Login, Notes } from '../views'
+import { Home, Login, Notes, Attendance, Schedule } from '../views'
 import { Button } from 'react-native'
-import { Asistencia } from '../views/Asistencia';
-import { Horario } from '../views/Horario';
 
 const { Navigator, Screen } = createNativeStackNavigator<propsNavigationStack>()
 
@@ -18,9 +16,36 @@ export const NavigationStack = () => {
                component={Login}
                options={{ headerShown: false }}
             />
-            <Screen name='Notes' component={Notes} />
-            <Screen name='Asistencia' component={Asistencia} />
-            <Screen name='Horario' component={Horario} />
+            <Screen
+               name='Notes'
+               component={Notes}
+               options={{
+                  headerStyle: { backgroundColor: '#383838' },
+                  headerTintColor: 'white',
+                  headerTitleAlign: 'center',
+                  animation: 'slide_from_right',
+               }}
+            />
+            <Screen
+               name='Attendance'
+               component={Attendance}
+               options={{
+                  headerStyle: { backgroundColor: '#383838' },
+                  headerTintColor: 'white',
+                  headerTitleAlign: 'center',
+                  animation: 'slide_from_right',
+               }}
+            />
+            <Screen
+               name='Schedule'
+               component={Schedule}
+               options={{
+                  headerStyle: { backgroundColor: '#383838' },
+                  headerTintColor: 'white',
+                  headerTitleAlign: 'center',
+                  animation: 'slide_from_right',
+               }}
+            />
             <Screen
                name='Home'
                component={Home}

@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 
-export const Asistencia = () => {
+export const Attendance = () => {
   return (
     <View>
         <Text>
