@@ -1,14 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Appearance, TouchableOpacity } from 'react-native';
-import { Home } from './src/views/Home';
-import { Login } from './src/views/Login';
+import { StyleSheet } from 'react-native';
+import { NavigationStack } from './src/navigation'
 
-
-export default function App() {
+function App() {
   return (
-    <Home/>
+   <NavigationStack/>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
