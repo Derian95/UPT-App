@@ -8,7 +8,7 @@ export const CardTime = () => {
       <TouchableOpacity
          style={tw`bg-[#D95560]  w-90 h-25 rounded-md items-start justify-between p-4 `}
          onPress={() => {
-            navigation.navigate('Attendance')
+            navigation.navigate('Schedule')
          }}
       >
          <Text style={tw`text-white text-2xl `}>Horario</Text>

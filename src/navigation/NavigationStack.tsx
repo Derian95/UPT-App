@@ -4,7 +4,7 @@ import { propsNavigationStack } from './models'
 
 import { Home, Login, Notes, Attendance, Schedule } from '../views'
 import { Button } from 'react-native'
-
+import { ButtonDarkMode } from '../components/ui'
 const { Navigator, Screen } = createNativeStackNavigator<propsNavigationStack>()
 
 export const NavigationStack = () => {
@@ -34,6 +34,8 @@ export const NavigationStack = () => {
                   headerTintColor: 'white',
                   headerTitleAlign: 'center',
                   animation: 'slide_from_right',
+                  headerRight: () => <ButtonDarkMode />,
+                  title: 'Asistencia',
                }}
             />
             <Screen
@@ -50,7 +52,10 @@ export const NavigationStack = () => {
                name='Home'
                component={Home}
                options={{
-                  headerShown: false,
+                  headerStyle: { backgroundColor: '#383838' },
+                  headerTintColor: 'white',
+                  headerTitleAlign: 'center',
+                  headerShown: true,
                   headerRight: () => (
                      <Button
                         onPress={() => alert('This is a button!')}
@@ -59,7 +64,7 @@ export const NavigationStack = () => {
                      />
                   ),
                   headerBackVisible: true,
-                  headerStyle: { backgroundColor: 'red' },
+                  title: 'UPT',
                }}
             />
          </Navigator>

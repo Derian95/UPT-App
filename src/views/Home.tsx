@@ -7,7 +7,7 @@ import { propsStack } from '../navigation/models'
 export const Home = () => {
   const navigate =useNavigation<propsStack>()
   return (
-    <View style={tw`bg-[#292D36]  flex-1 justify-center items-center `}>
+    <View style={tw`bg-[#292D36]  flex-1 justify-start items-center pt-5 `}>
         <CardHeader/>
         <CardNotes/>
         <CardAssistance/>
@@ -16,7 +16,7 @@ export const Home = () => {
         <Button
         
         title='pa ver el login'
-        onPress={()=>navigate.navigate('Login')}
+        onPress={()=>navigate.replace('Login')}
         />
     </View>
   )
