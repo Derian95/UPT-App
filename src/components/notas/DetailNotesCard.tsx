@@ -19,9 +19,9 @@ export const DetailNotesCard: FC<Props> = ({ unidades }) => {
          </View>
 
          <View style={tw`flex-row justify-between mt-3 p-2 bg-gray-800`}>
-            <Text style={tw` w-4/12`}>Descripcion</Text>
-            <Text>Peso</Text>
-            <Text>Nota</Text>
+            <Text style={tw` w-4/12 text-white`}>Descripcion</Text>
+            <Text style={tw` text-white`}>Peso</Text>
+            <Text style={tw` text-white`}>Nota</Text>
          </View>
          {unidades.data.map((eva) => (
             <View key={eva.criterio}>
