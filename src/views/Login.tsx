@@ -2,7 +2,7 @@ import { Canvas, CanvasProvider } from '@shopify/react-native-skia'
 import { View, Text } from 'react-native'
 import tw from 'twrnc'
 import { FormLogin } from '../components/login'
-import { BlurViewra } from "../components/ui/BlurEffect"
+import { BlurEffect } from "../components/ui/BlurEffect"
 
 export const Login = () => {
    return (

@@ -10,7 +10,7 @@ const { Navigator, Screen } = createNativeStackNavigator<propsNavigationStack>()
 export const NavigationStack = () => {
    return (
       <NavigationContainer>
-         <Navigator initialRouteName='Home'>
+         <Navigator initialRouteName='Login'>
             <Screen
                name='Login'
                component={Login}
@@ -52,7 +52,8 @@ export const NavigationStack = () => {
                name='Home'
                component={Home}
                options={{
-                  headerStyle: { backgroundColor: '#383838' },
+                  headerStyle: { backgroundColor: '#0a0a0a' },
+                  headerShadowVisible:false,
                   headerTintColor: 'white',
                   headerTitleAlign: 'center',
                   headerShown: true,
@@ -60,7 +61,7 @@ export const NavigationStack = () => {
                      <Button
                         onPress={() => alert('This is a button!')}
                         title='Info'
-                        color='#fff'
+                        color='#000'
                      />
                   ),
                   headerBackVisible: true,

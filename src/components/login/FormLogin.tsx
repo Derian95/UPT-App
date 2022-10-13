@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native"
+import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from "react-native"
 import tw from 'twrnc'
 import { useNavigation } from "@react-navigation/native"
 import { propsStack } from "../../navigation/models"
@@ -9,16 +9,16 @@ export const FormLogin = () => {
 
   return (
     <> 
-    <View  style={tw`  w-90 h-120 rounded-md items-center justify-start`}>
       <BlurEffect/>
-        <Text style={tw`text-3xl text-white mb-12 mt-12`}>INICIO DE SESION</Text>
-        <Text style={tw` text-white text-left w-10/12`}>Codigo</Text>
-        <TextInput style={tw`bg-zinc-100  text-white w-10/12 h-10 rounded mb-4 text-[#383838] p-2`} value={'text'}/>
+<ScrollView>
+    <View  style={tw`  w-98 h-150 rounded-md items-center justify-start`}>
+        <Text style={tw`text-4xl font-medium text-white  mt-12`}>Hola otra vez!!!</Text>
+        <Text style={tw`text-lg text-white mb-8`}>Bienvenido :D</Text>
+        <TextInput style={tw`bg-zinc-100  text-white w-10/12  rounded mb-4 text-[#383838] p-3`} placeholder={'Ingrese su codigo'}/>
        
-        <Text style={tw` text-white  text-left w-10/12`}>Contrsaseña</Text>
-        <TextInput style={tw`bg-zinc-100  text-white w-10/12 h-10 rounded mb-4 text-[#383838] p-2`} value={'DSDSDSDSDS'}/>
+        <TextInput style={tw`bg-zinc-100  text-white w-10/12 rounded mb-4 text-[#383838] p-3`} placeholder={'Contraseña'}/>
        
-        <TouchableOpacity style={tw`mt-3 bg-[#0487FF] w-10/12 h-10 rounded justify-center items-center` 
+        <TouchableOpacity style={tw`mt-3 bg-blue-800 w-10/12 p-3 rounded justify-center items-center` 
          
       }
       onPress={()=>navigation.replace('Home')}
@@ -26,8 +26,10 @@ export const FormLogin = () => {
             <Text style={tw`text-white text-lg`}>Ingresar</Text>
 
         </TouchableOpacity>
+        <Text style={tw`text-xs text-white mt-5 mb-12 `}>¿Problemas para ingresar?</Text>
 
   </View>
+  </ScrollView>
   </>
   )
 }

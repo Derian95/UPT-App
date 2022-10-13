@@ -5,16 +5,19 @@ interface Props{
     children:React.ReactNode
 }
 export const BlurEffect = () => {
-    const { width, height}= Dimensions.get('window')
-    const c= vec(width / 2.2, (height/3) *1.1)
-    const r = c.x-100
-    const image= useImage(require('../../../assets/horario.png'))
+    const { width, height}= Dimensions.get('screen')
+    const c= vec(width / 2.9, (height/3.5) *1.1)
+    const c2= vec(width / 1.35, (height/1.25) *1.1)
+    
     return (
-      <Canvas style={{ flex: 1, position:'absolute', width:'100%', height:'100%'}} >
-        <Fill color={"#e5e8ef"} />
-      <Circle c={c} r={200} color={'blue'}>
+      <Canvas style={{ position:'absolute', width:width, height:height}} >
+        <Fill color={"#0a0a0a "} />
+      <Circle c={c} r={100} color={'#020070'}>
       </Circle>
-      <BackdropFilter filter={<Blur blur={50}/>} >
+      <Circle c={c2} r={50} color={'#9B9846'}>
+      </Circle>
+      
+      <BackdropFilter filter={<Blur blur={20}/>} >
         <Fill color={"#DFE3E610"}/>
       </BackdropFilter>
     </Canvas>

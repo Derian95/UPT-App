@@ -1,5 +1,6 @@
 {
   "expo": {
+    "owner":"insert5000",
     "name": "my-app",
     "slug": "my-app",
     "version": "1.0.0",
@@ -9,8 +10,7 @@
     "splash": {
       "image": "./assets/horario.png",
       "resizeMode": "native",
-      "backgroundColor": "black"
-      
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,12 +24,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/horario.png",
-        "backgroundColor": "black"
-      }
-
+        "backgroundColor": "#000000"
+      },
+      "package": "com.insert5000.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "408cb4bb-0f14-4ebf-a2ac-af0dd197b959"
+      }
     }
   }
 }
