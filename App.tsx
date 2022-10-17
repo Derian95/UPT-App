@@ -1,9 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { NavigationStack } from './src/navigation'
+import { Provider } from 'react-redux'
+import { store } from './src/store'
 
 function App() {
   return (
+    <Provider store={store}>
+
    <NavigationStack/>
+   </Provider>
   );
 }
 

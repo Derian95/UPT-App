@@ -6,6 +6,7 @@ export type propsNavigationStack={
     Login:undefined
     Attendance:undefined
     Schedule:undefined
+    Codes:undefined
 }
 
 export type propsStack=NativeStackNavigationProp<propsNavigationStack>

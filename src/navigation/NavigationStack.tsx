@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { propsNavigationStack } from './models'
 
-import { Home, Login, Notes, Attendance, Schedule } from '../views'
+import { Home, Login, Notes, Attendance, Schedule, Codes } from '../views'
 import { Button } from 'react-native'
 import { ButtonDarkMode } from '../components/ui'
 const { Navigator, Screen } = createNativeStackNavigator<propsNavigationStack>()
@@ -10,10 +10,15 @@ const { Navigator, Screen } = createNativeStackNavigator<propsNavigationStack>()
 export const NavigationStack = () => {
    return (
       <NavigationContainer>
-         <Navigator initialRouteName='Login'>
+         <Navigator initialRouteName='Codes'>
             <Screen
                name='Login'
                component={Login}
+               options={{ headerShown: false }}
+            />
+            <Screen
+               name='Codes'
+               component={Codes}
                options={{ headerShown: false }}
             />
             <Screen
