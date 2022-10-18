@@ -20,8 +20,8 @@ export const Codes = () => {
   const getCodes = useGetCodesQuery(undefined);
   const dispatch = useAppDispatch();
 
-  const semesters = useAppSelector((state) => state.semesters);
-  const codess = useAppSelector((state) => state.codes.codes);
+//   const semesters = useAppSelector((state) => state.semesters);
+//   const codess = useAppSelector((state) => state.codes.codes);
   const showModalState = useAppSelector((state) => state.codes.modalShow);
 
   const array: string[] = [];
@@ -61,7 +61,7 @@ export const Codes = () => {
       />
 
       <Semester />
-      <Modal show={showModalState} />
+      <Modal  />
 
 
     </View>

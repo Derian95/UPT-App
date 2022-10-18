@@ -8,12 +8,9 @@ import { changeModalShow, setSelectedCode } from "../../store/state";
 
 import { useGetSemesterByCodeMutation } from "../../store/api/upt-api";
 import { setSemesters } from "../../store/state/semestersSlice";
+import tw from "twrnc";
 
-interface Props {
-  show?: boolean;
-}
-
-export const Modal: FC<Props> = ({ show }) => {
+export const Modal = () => {
   const semesters = useAppSelector((state) => state.codes.selected);
   const codes = useAppSelector((state) => state.codes.codes);
   const tes = useAppSelector((state) => state.codes.modalShow);
@@ -30,49 +27,37 @@ export const Modal: FC<Props> = ({ show }) => {
 
   console.log(tes);
   return (
-    <View style={tes ? styles.show : styles.unshow} >
-<View
- style={{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor:'orange',
-    padding:40,
-    borderRadius:15,
-    width:"80%"
-
-  }}
->
-<Text onPress={()=>dispatch(changeModalShow())} style={{padding:5}}>x</Text>
-
-{codes.map((cod) => (
-        // <Text  accessibilityValue={} key={cod}>{cod}</Text>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            padding:10,
-          }}
-          key={cod}
+    <View style={tes ? styles.show : styles.unshow}>
+      <View
+        style={tw`bg-red-500 rounded w-70 items-end pb-6 `}
+      >
+        <Text
+          onPress={() => dispatch(changeModalShow())}
+          style={tw`text-slate-100 p-2 text-2xl pr-4`}
         >
-            
-          <Text >{cod}</Text>
+          x
+        </Text>
 
-          <RadioButton
-            value={cod}
-            // status={ checked === 'second' ? 'checked' : 'unchecked' }
-            status={semesters == cod ? "checked" : "unchecked"}
-            onPress={() => {
-              dispatch(setSelectedCode(cod)),
-                getSemesters({ codigoUniversitario: cod })
-            }}
-          />
-        </View>
-      ))}
-</View>
-    
+        {codes.map((cod) => (
+          // <Text  accessibilityValue={} key={cod}>{cod}</Text>
+          <View
+            style={tw`items-center  w-full justify-center flex-row  p-1`}
+            key={cod}
+          >
+            <Text style={tw`text-slate-100`}>{cod}</Text>
+
+            <RadioButton
+              value={cod}
+              // status={ checked === 'second' ? 'checked' : 'unchecked' }
+              status={semesters == cod ? "checked" : "unchecked"}
+              onPress={() => {
+                dispatch(setSelectedCode(cod)),
+                  getSemesters({ codigoUniversitario: cod });
+              }}
+            />
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
@@ -82,11 +67,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000099",
     alignItems: "center",
     justifyContent: "center",
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     position: "absolute",
     left: 0,
-
   },
   unshow: {
     display: "none",
