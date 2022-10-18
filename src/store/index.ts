@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 import  codesReducer  from './state/codesSlice'
+import semestersReducer from './state/semestersSlice'
 //api
 import { uptApi } from './api/upt-api'
 
@@ -9,6 +10,7 @@ import { uptApi } from './api/upt-api'
 export const store = configureStore({
   reducer: {
     codes:codesReducer,
+    semesters:semestersReducer,
     [uptApi.reducerPath]: uptApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

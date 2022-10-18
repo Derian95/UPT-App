@@ -2,29 +2,36 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface CodesState {
     codes:string[]
+    selected:string
+    modalShow:boolean
 }
 
 
 const initialState: CodesState = {
-    codes:['asd','aaaa']
+    codes: [],
+    selected: '',
+    modalShow: false
 }
 
-/*
-setUser: (state, action: PayloadAction<CodesState>) => {
-            state.token = action.payload.token
-            state.rol=action.payload.rol
-            state.nombres=action.payload.nombres
-        },
-*/
+
 
 export const codesSlice = createSlice({
     name: 'codes',
     initialState,
     reducers: {
-        setCodes:(state, action:PayloadAction<CodesState>)=>{
-            state.codes=action.payload.codes
+        setCodes:(state, action:PayloadAction<string[]>)=>{
+            //action.payload.forEach((item) => state.codes.push(item))
+            state.codes=action.payload
         },
-        
+        addCodes:(state, action:PayloadAction<string>)=>{
+            state.codes.push(action.payload)
+        },
+        setSelectedCode:(state, action:PayloadAction<string>)=>{
+            state.selected=action.payload
+        },
+        changeModalShow:(state)=>{
+            state.modalShow = !state.modalShow
+        },
         defaultState: (state) => {
             state = initialState
         },
@@ -32,6 +39,6 @@ export const codesSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setCodes, defaultState } = codesSlice.actions
+export const { setCodes, defaultState, addCodes,setSelectedCode, changeModalShow } = codesSlice.actions
 
 export default codesSlice.reducer

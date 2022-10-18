@@ -33,6 +33,15 @@ export const uptApi = createApi({
                 }
             }
         }),
+        getSemesterByCode:builder.mutation({
+            query:(body:{codigoUniversitario:string})=>{
+                return{
+                    url:'estudiante/codigosestudiante',
+                    method: 'post',
+                    body,
+                }
+            }
+        }),
         getCodes:builder.query<any, void>({
             query:()=>'estudiante/codigos/2010037630'
         }),
@@ -49,4 +58,4 @@ export const uptApi = createApi({
 })
 
 //export const { useGetPokemonByNameQuery } = agendaApi
-export const { useLoginUserMutation,useSendNewEventMutation, useGetCodesQuery, useGetEventQuery, useGetEventsByUserQuery } = uptApi
+export const { useLoginUserMutation,useSendNewEventMutation, useGetCodesQuery, useGetEventQuery, useGetEventsByUserQuery, useGetSemesterByCodeMutation } = uptApi
