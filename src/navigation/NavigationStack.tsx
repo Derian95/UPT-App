@@ -24,12 +24,18 @@ export const NavigationStack = () => {
             <Screen
                name='Notes'
                component={Notes}
+               
                options={{
-                  headerStyle: { backgroundColor: '#383838' },
+                  title:'Notas',
                   headerTintColor: 'white',
                   headerTitleAlign: 'center',
                   animation: 'slide_from_right',
+                  headerShadowVisible:true,
+                  headerBackTitleVisible:true,
+                  headerTransparent:true
+
                }}
+               
             />
             <Screen
                name='Attendance'

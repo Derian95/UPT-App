@@ -3,14 +3,26 @@ import tw from 'twrnc'
 import { useNavigation } from '@react-navigation/native'
 
 import { propsStack } from '../../navigation/models/stackProps'
+import { FC } from 'react'
 
-export const CardNotes = () => {
+
+interface Props{
+   idSemester:number
+   idStament:number
+}
+
+export const CardNotes:FC<Props> = ({idSemester, idStament}) => {
+   
    const navigation = useNavigation<propsStack>()
+
    return (
       <TouchableOpacity
          style={tw`bg-[#42BF56]  w-85 h-25 rounded-md items-start justify-between p-4 mb-6 `}
          onPress={() => {
-            navigation.navigate('Notes')
+            navigation.navigate('Notes',{
+               idSemester:idSemester,
+               idStament:idStament
+            })
          }}
       >
          <View style={tw`flex-row justify-between w-full h-full items-center`}>

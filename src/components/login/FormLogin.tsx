@@ -74,7 +74,7 @@ export const FormLogin = () => {
 
           <TouchableOpacity
             style={tw`mt-3 bg-blue-800 w-10/12 p-3 rounded justify-center items-center`}
-            onPress={() => navigation.replace("Home")}
+            //onPress={() => navigation.replace("Home")}
           >
             <Text style={tw`text-white text-lg`}>Ingresar</Text>
           </TouchableOpacity>

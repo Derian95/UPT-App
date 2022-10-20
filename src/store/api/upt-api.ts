@@ -33,6 +33,7 @@ export const uptApi = createApi({
                 }
             }
         }),
+        /*************************************************** */
         getSemesterByCode:builder.mutation({
             query:(body:{codigoUniversitario:string})=>{
                 return{
@@ -43,8 +44,20 @@ export const uptApi = createApi({
             }
         }),
         getCodes:builder.query<any, void>({
-            query:()=>'estudiante/codigos/2010037630'
+            query:()=>'estudiante/codigos/2017059489'
         }),
+
+        getNotesSemester:builder.mutation({
+            query:(body:{codigoUniversitario:number, itemEstamento:number, idSemestre:number})=>{
+                return{
+                    url:'estudiante/matriculasnotasporsemestre',
+                    method: 'post',
+                    body,
+                }
+            }
+        }),
+
+        /*************************************************** */
 
         getEvent:builder.query<Event, string | undefined>({
             query:(id)=>`/api/event/public/${id}`
@@ -58,4 +71,4 @@ export const uptApi = createApi({
 })
 
 //export const { useGetPokemonByNameQuery } = agendaApi
-export const { useLoginUserMutation,useSendNewEventMutation, useGetCodesQuery, useGetEventQuery, useGetEventsByUserQuery, useGetSemesterByCodeMutation } = uptApi
+export const { useLoginUserMutation,useSendNewEventMutation, useGetCodesQuery, useGetEventQuery, useGetEventsByUserQuery, useGetSemesterByCodeMutation, useGetNotesSemesterMutation } = uptApi
