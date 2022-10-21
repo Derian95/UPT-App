@@ -23,11 +23,9 @@ export const Modal = () => {
 
   //const semestersData = useAppSelector((state) => state.semesters);
   const dispatch = useAppDispatch();
-  const [getSemesters, { data, isSuccess }] =
-    useGetSemesterByCodeMutation();
+  const [getSemesters, { data, isSuccess }] = useGetSemesterByCodeMutation();
 
   if (isSuccess) {
-    //console.log(data.data[0]);
     dispatch(setSemesters(data.data[0]));
   }
 
@@ -36,7 +34,7 @@ export const Modal = () => {
       <View
         style={tw`w-full h-full bg-[#00000090]  justify-center items-center`}
       >
-        <View style={tw`bg-red-400 rounded w-70 items-end pb-6 `}>
+        <View style={tw`bg-black rounded w-70 items-end pb-6 `}>
           <Text
             onPress={() => dispatch(changeModalShow())}
             style={tw`text-slate-100 p-2 text-2xl pr-4`}
@@ -56,7 +54,8 @@ export const Modal = () => {
                 status={semesters == cod ? "checked" : "unchecked"}
                 onPress={() => {
                   dispatch(setSelectedCode(cod)),
-                    getSemesters({ codigoUniversitario: cod });
+                    getSemesters({ codigoUniversitario: cod }),
+                    dispatch(changeModalShow())
                 }}
               />
             </View>

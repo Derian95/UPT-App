@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -5,29 +7,42 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  
+  Animated
 } from "react-native";
-import tw from "twrnc";
-import { useNavigation } from "@react-navigation/native";
-import { propsStack } from "../../navigation/models";
 import { BlurEffect } from "../ui/BlurEffect";
-import { useState } from "react";
+import tw from "twrnc";
+import { propsStack } from "../../navigation/models";
 
 export const FormLogin = () => {
   const navigation = useNavigation<propsStack>();
   const [pass, setPass] = useState(true)
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
+  const fadeIn = () => {
+  Animated.timing(fadeAnim,{
+    toValue: 1,
+    useNativeDriver: false,
+    duration:1000
+  }).start()
+  };
+  
+
+
+  useEffect(() => {
+  fadeIn()
+  }, [])
+  
   return (
     <>
       <BlurEffect />
-      <ScrollView>
-        <View style={tw`  w-98 h-150 rounded-md items-center justify-start`}>
+      <Animated.ScrollView style={{opacity:fadeAnim}}>
+        <View style={tw`  w-98 h-150 rounded-md items-center justify-start pt-40`}>
           <Text style={tw`text-4xl font-medium text-white  mt-12`}>
             Hola otra vez!!!
           </Text>
           <Text style={tw`text-lg text-white mb-8`}>Bienvenido :D</Text>
 
-          <View style={tw`flex-row bg-zinc-100 w-10/12 rounded  mb-4  justify-between items-center`}>
+          <Animated.View style={ tw`flex-row bg-zinc-100 w-10/12 rounded  mb-4  justify-between items-center`}>
             <TextInput
               keyboardType="numeric"
               maxLength={10}
@@ -45,7 +60,7 @@ export const FormLogin = () => {
                   source={require("../../../assets/user.png")}
                   
                 />
-          </View>
+          </Animated.View>
 
           <View style={tw`flex-row bg-zinc-100 w-10/12 rounded  mb-4  justify-between items-center`}>
           
@@ -74,7 +89,7 @@ export const FormLogin = () => {
 
           <TouchableOpacity
             style={tw`mt-3 bg-blue-800 w-10/12 p-3 rounded justify-center items-center`}
-            //onPress={() => navigation.replace("Home")}
+            onPress={() => navigation.replace("Codes")}
           >
             <Text style={tw`text-white text-lg`}>Ingresar</Text>
           </TouchableOpacity>
@@ -83,7 +98,7 @@ export const FormLogin = () => {
             ¿Problemas para ingresar?
           </Text>
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
     </>
   );
 };

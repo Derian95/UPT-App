@@ -1,39 +1,62 @@
-import { FC } from 'react'
-import {View, Text} from 'react-native'
+import { View, Text, ScrollView, Image, Button } from "react-native";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { SemesterCard } from "./SemesterCard";
+import tw from 'twrnc'
+import React from "react";
+import { BlurScreens } from "../ui/BlurScreens";
+import { changeModalShow } from "../../store/state";
+import { IconButton, MD3Colors } from 'react-native-paper';
 
-import { Datum } from '../../interfaces'
-import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import { SemesterCard } from './SemesterCard'
+export const Semester = () => {
+  const semesters = useAppSelector((state) => state.semesters);
+  const dispatch = useAppDispatch();
+  const codes = useAppSelector((state) => state.codes.codes);
 
+  if (semesters == null) return <Text>Cargandin***</Text>;
+  const { codigoUniversitario, escuela, tipo, semestres, itemEstamento } = semesters;
 
-
-
-
-
-
-
-export const Semester= () => {
-const semesters = useAppSelector((state) => state.semesters)
-
-    
-    // if(data==null) return <Text>Cargandin</Text>
-    if(semesters == null) return <Text>Cargandin***</Text>
-    const {codigoUniversitario, escuela, tipo,semestres, itemEstamento} = semesters
-//console.log(semesters)
   return (
-    <View style={{height:450, backgroundColor:'red', }}>
-        <Text>{codigoUniversitario}</Text>
-        <Text>{escuela}</Text>
-        {/*<Text>{itemEstamento}</Text>*/}
-        <Text>{tipo}</Text>
-
-
-        {
-            semestres.map(sem=>(
-            // <Text style={{padding:2, backgroundColor:'blue',margin:2, color:'white'}} key={ra.idSemestre}>{ra.observacion}</Text>
-            <SemesterCard semester={sem} key={sem.observacion} stament={itemEstamento}/>
-            ))
-        }
+    <>
+    <View style={tw`justify-center items-center`}>
+    <Image
+        source={{uri:'https://diariosinfronteras.com.pe/wp-content/uploads/2021/09/5-A-18.jpg'}}
+        style={{height:200, width:'100%', opacity:.4}}
+      />
+      <View style={tw`absolute items-center`}>
+        <Text style={tw` text-white text-2xl font-bold mb-4`}>{codigoUniversitario}</Text>
+        <Text style={tw`text-slate-300 text-base`}>{escuela}</Text>
+        
+      </View>
+      <Text style={tw`absolute bottom-5 right-10 text-white text-xs text-slate-400`}>Se detectaron mas codigos </Text>
+      {
+          codes.length>1?
+          <IconButton 
+          style={tw`absolute bottom-0 right-0`}
+        icon={"account-box"}  
+        onPress={() => dispatch(changeModalShow())}  
+        iconColor={ MD3Colors.neutral80}
+        />:
+        null}
     </View>
-  )
-}
+
+     
+    <ScrollView >
+      <BlurScreens/>
+
+        
+
+      <View style={tw`h-full w-full justify-start items-center pt-4`}>
+      {semestres.map((sem) => (
+          <SemesterCard
+            semester={sem}
+            key={sem.observacion}
+            stament={itemEstamento}
+          />
+        ))}
+    </View>
+      
+    </ScrollView>
+    </>
+
+  );
+};
