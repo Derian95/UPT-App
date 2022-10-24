@@ -15,7 +15,7 @@ export const Notes = () => {
 
   useEffect(() => {
     notesCources({
-      codigoUniversitario: 2010037630,
+      codigoUniversitario: 2017059489,
       idSemestre: idSemester,
       itemEstamento: idStament,
     });
@@ -35,7 +35,7 @@ export const Notes = () => {
       <BlurScreens />
 
       {isSuccess ? (
-        !data.data == null ? (
+        data.data != null ? (
           <NotesList notes={data.data[0]} />
         ) : (
           <Text style={tw`text-white`}>{data.mensajeError[0].mensaje}</Text>

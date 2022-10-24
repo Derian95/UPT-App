@@ -32,7 +32,7 @@ export const uptApi = createApi({
                     body,
                 }
             }
-        }),
+        }), 
         /*************************************************** */
         getSemesterByCode:builder.mutation({
             query:(body:{codigoUniversitario:string})=>{
@@ -44,7 +44,7 @@ export const uptApi = createApi({
             }
         }),
         getCodes:builder.query<any, void>({
-            query:()=>'estudiante/codigos/2010037630'
+            query:()=>'estudiante/codigos/2017059489'
         }),
 
         getNotesSemester:builder.mutation({

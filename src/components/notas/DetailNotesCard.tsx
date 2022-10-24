@@ -13,10 +13,10 @@ export const DetailNotesCard: FC<Props> = ({ units }) => {
    return (
       <View style={tw`bg-[#383838] ml-2 mr-2 p-2 mb-2`}>
          <View style={tw`flex-row justify-between`}>
-            <Text style={tw`text-[#67A64B] text-2xl`}>
+            <Text style={tw`text-[#67A64B] text-xl`}>
                {nombre}
             </Text>
-            <Text style={tw`text-[#67A64B] text-2xl`}>
+            <Text style={tw`text-[#67A64B] text-xl`}>
                {peso} %
             </Text>
          </View>
@@ -32,8 +32,8 @@ export const DetailNotesCard: FC<Props> = ({ units }) => {
                   <Text style={tw`text-gray-400 w-4/12`}>
                      {nombre}
                   </Text>
-                  <Text style={tw`text-gray-400`}>{peso}</Text>
-                  <Text style={tw`text-gray-400`}>{promedio}</Text>
+                  <Text style={tw`text-gray-400`}>{peso}%</Text>
+                  <Text style={tw`text-gray-400 ${promedio <=10.5 ?'text-red-400': 'text-blue-400'}`}>{promedio}</Text>
                </View>
                <View style={tw`w-12/12 h-1 bg-gray-800 `}></View>
             </View>

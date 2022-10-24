@@ -1,4 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { useGetSemesterByCodeMutation } from "../../store/api/upt-api";
+import { setSemesters } from "../../store/state/semestersSlice";
+import { changeModalShow, setSelectedCode } from "../../store/state";
 import {
   View,
   Text,
@@ -6,14 +10,7 @@ import {
   StyleSheet,
   Modal as ModalView,
 } from "react-native";
-
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-
 import { RadioButton } from "react-native-paper";
-import { changeModalShow, setSelectedCode } from "../../store/state";
-
-import { useGetSemesterByCodeMutation } from "../../store/api/upt-api";
-import { setSemesters } from "../../store/state/semestersSlice";
 import tw from "twrnc";
 
 export const Modal = () => {
@@ -21,14 +18,18 @@ export const Modal = () => {
   const codes = useAppSelector((state) => state.codes.codes);
   const modalVisible = useAppSelector((state) => state.codes.modalShow);
 
-  //const semestersData = useAppSelector((state) => state.semesters);
   const dispatch = useAppDispatch();
   const [getSemesters, { data, isSuccess }] = useGetSemesterByCodeMutation();
 
-  if (isSuccess) {
-    dispatch(setSemesters(data.data[0]));
-  }
 
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setSemesters(data.data[0]));
+    }
+  
+  }, [data])
+  
   return (
     <ModalView animationType="fade" transparent={true} visible={modalVisible}>
       <View

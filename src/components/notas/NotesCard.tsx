@@ -26,9 +26,9 @@ export const NotesCard:FC<Props> = ({ cources }) => {
         </View>
         <View>
             <Text style={tw`text-white text-base ml-2`}>Total de creditos: {creditos}</Text>
-            <Text style={tw`text-white text-base ml-2`}>Docente:{docente}</Text>
+            <Text style={tw`text-white text-base ml-2`}>Docente: {docente}</Text>
             <Text style={tw`text-white text-base ml-2`}>Seccion: {seccion}</Text>
-            <Text style={tw`text-white text-base ml-2 mb-4`}>Curso Electivo:{electivo? "Si": "No"}</Text>
+            <Text style={tw`text-white text-base ml-2 mb-4`}>Curso Electivo: {electivo? "Si": "No"}</Text>
         </View>
         <FlatList
          data={cources.unidades}

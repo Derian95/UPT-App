@@ -1,78 +1,69 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useLoginUserMutation } from "../../store/api/upt-api-auth";
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView,
-  Animated
+  Animated,
+  GestureResponderEvent
 } from "react-native";
-import { BlurEffect } from "../ui/BlurEffect";
+import { Formik } from "formik";
 import tw from "twrnc";
+
 import { propsStack } from "../../navigation/models";
+import { validationSchemaLogin } from "../../utils";
 
 export const FormLogin = () => {
   const navigation = useNavigation<propsStack>();
-  const [pass, setPass] = useState(true)
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const [pass, setPass] = useState(true);
+  const [loginUser, { data, isSuccess, isLoading }] = useLoginUserMutation();
 
-  const fadeIn = () => {
-  Animated.timing(fadeAnim,{
-    toValue: 1,
-    useNativeDriver: false,
-    duration:1000
-  }).start()
-  };
   
 
-
+  if(isLoading){
+    console.log(isLoading)
+  }
   useEffect(() => {
-  fadeIn()
-  }, [])
+    if(isSuccess){
+      console.log(data)
+  
+      data.data==null? alert("SE WEBIO MANO"):navigation.replace('Codes')
+    }
+  
+  }, [data])
   
   return (
-    <>
-      <BlurEffect />
-      <Animated.ScrollView style={{opacity:fadeAnim}}>
-        <View style={tw`  w-98 h-150 rounded-md items-center justify-start pt-40`}>
-          <Text style={tw`text-4xl font-medium text-white  mt-12`}>
-            Hola otra vez!!!
-          </Text>
-          <Text style={tw`text-lg text-white mb-8`}>Bienvenido :D</Text>
+    
+          <Formik
+            initialValues={{
+              idSistema: 0,
+              idTipoUsuario: 2,
+              usuario: "",
+              contrasenia: "",
+            }}
+            validationSchema={validationSchemaLogin}
+            onSubmit={(values) => loginUser({...values}).unwrap()}
+          >
+            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+              <>
+                <View
+                  style={tw`flex-row bg-zinc-100 w-10/12 rounded   justify-between items-center ${
+                    errors.usuario ? "border border-red-500 border-2" : ""
+                  }`}
+                >
+                  <TextInput
+                    keyboardType="numeric"
+                    maxLength={10}
+                    style={tw`text-gray-500 text-base  flex-1 ml-2 p-3`}
+                    placeholder={"Ingrese su codigo :D"}
+                    onChangeText={handleChange("usuario")}
+                    onBlur={handleBlur("usuario")}
+                    value={values.usuario}
+                  />
 
-          <Animated.View style={ tw`flex-row bg-zinc-100 w-10/12 rounded  mb-4  justify-between items-center`}>
-            <TextInput
-              keyboardType="numeric"
-              maxLength={10}
-              style={tw`text-gray-500 text-base  flex-1 ml-2 p-3`}
-              placeholder={"Ingrese su codigo :D"}
-            />
-
-                <Image
-                  style={{
-                    width: 30,
-                    height: 30,
-                    resizeMode: "stretch",
-                    marginRight: 10,
-                  }}
-                  source={require("../../../assets/user.png")}
-                  
-                />
-          </Animated.View>
-
-          <View style={tw`flex-row bg-zinc-100 w-10/12 rounded  mb-4  justify-between items-center`}>
-          
-              <TextInput
-                keyboardType="numeric"
-                secureTextEntry={pass?true:false}
-                maxLength={6}
-                style={tw`text-gray-500 text-base flex-1 ml-2 p-3`}
-                placeholder={"Contraseña"}
-              />
-
-              <View  onTouchEnd={()=>setPass(prev=> !prev)}>
                   <Image
                     style={{
                       width: 30,
@@ -80,25 +71,61 @@ export const FormLogin = () => {
                       resizeMode: "stretch",
                       marginRight: 10,
                     }}
-                    source={ pass? require("../../../assets/show.png"): require("../../../assets/unshow.png")}
-                    
+                    source={require("../../../assets/user.png")}
                   />
-              </View>
-          </View>
+                </View>
+                <Text style={tw`text-red-500  text-xs w-10/12 mb-4 `}>
+                  {errors.usuario}
+                </Text>
 
+                <View
+                  style={tw`flex-row bg-zinc-100 w-10/12 rounded  justify-between items-center ${
+                    errors.contrasenia ? "border border-red-500 border-2" : ""
+                  }`}
+                >
+                  <TextInput
+                    keyboardType="numeric"
+                    secureTextEntry={pass ? true : false}
+                    maxLength={6}
+                    style={tw`text-gray-500 text-base flex-1 ml-2 p-3`}
+                    placeholder={"Contraseña"}
+                    onChangeText={handleChange("contrasenia")}
+                    onBlur={handleBlur("contrasenia")}
+                    value={values.contrasenia}
+                  />
 
-          <TouchableOpacity
-            style={tw`mt-3 bg-blue-800 w-10/12 p-3 rounded justify-center items-center`}
-            onPress={() => navigation.replace("Codes")}
-          >
-            <Text style={tw`text-white text-lg`}>Ingresar</Text>
-          </TouchableOpacity>
+                  <View onTouchEnd={() => setPass((prev) => !prev)}>
+                    <Image
+                      style={{
+                        width: 30,
+                        height: 30,
+                        resizeMode: "stretch",
+                        marginRight: 10,
+                      }}
+                      source={
+                        pass
+                          ? require("../../../assets/show.png")
+                          : require("../../../assets/unshow.png")
+                      }
+                    />
+                  </View>
+                </View>
+                <Text style={tw`text-red-500  text-xs w-10/12 mb-4 `}>
+                  {errors.contrasenia}
+                </Text>
 
-          <Text style={tw`text-xs text-white mt-5 mb-12 `}>
-            ¿Problemas para ingresar?
-          </Text>
-        </View>
-      </Animated.ScrollView>
-    </>
+                <TouchableOpacity
+                  style={tw`mt-3 bg-blue-800 w-10/12 p-3 rounded justify-center items-center`}
+                  onPress={handleSubmit as (values: any) => void }
+                >
+                  <Text style={tw`text-white text-lg`}>Ingresar</Text>
+                </TouchableOpacity>
+
+              
+              </>
+            )}
+          </Formik>
+
+          
   );
 };

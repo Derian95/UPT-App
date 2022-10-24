@@ -5,16 +5,17 @@ import  codesReducer  from './state/codesSlice'
 import semestersReducer from './state/semestersSlice'
 //api
 import { uptApi } from './api/upt-api'
-
+import { uptApiAuth } from './api/upt-api-auth'
 
 export const store = configureStore({
   reducer: {
     codes:codesReducer,
     semesters:semestersReducer,
     [uptApi.reducerPath]: uptApi.reducer,
+    [uptApiAuth.reducerPath]: uptApiAuth.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(uptApi.middleware),
+    getDefaultMiddleware().concat(uptApi.middleware).concat(uptApiAuth.middleware),
     
 });
 

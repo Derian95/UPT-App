@@ -14,9 +14,9 @@ export const GradientBack = () => {
       <Rect x={0} y={0} width={500} height={256}>
         <LinearGradient
           start={vec(0, 0)}
-          end={vec(300, 500)}
-          colors={["#082ee7", "black"]} 
-         /* colors={["#fbb040", "#f9ed32"]}*/
+          end={vec(200, 200)}
+          colors={["#0038FF", "#547AFF"]} 
+         /* colors={["#fbb040", "#f9ed32"]} #547AFF*/
         />
       </Rect>
     </Canvas>
