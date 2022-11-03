@@ -30,7 +30,7 @@ export const FormLogin = () => {
     if(isSuccess){
       console.log(data)
   
-      data.data==null? alert("SE WEBIO MANO"):navigation.replace('Codes')
+      data.data==null? alert("Datos erroneos"):navigation.replace('Codes')
     }
   
   }, [data])
@@ -49,8 +49,13 @@ export const FormLogin = () => {
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <>
+              <View style={tw`w-10/12 mb-10`}>
+                <Text style={tw`text-3xl text-black`}>Bienvenido otra vez!!</Text>
+                <Text style={tw`text-sm text-[#8B8B8B]`}>Inicie sesion para poder continuar</Text>
+              </View>
+             
                 <View
-                  style={tw`flex-row bg-zinc-100 w-10/12 rounded   justify-between items-center ${
+                  style={tw`flex-row bg-white rounded-3xl w-10/12 shadow-2xl   justify-between items-center ${
                     errors.usuario ? "border border-red-500 border-2" : ""
                   }`}
                 >
@@ -74,12 +79,12 @@ export const FormLogin = () => {
                     source={require("../../../assets/user.png")}
                   />
                 </View>
-                <Text style={tw`text-red-500  text-xs w-10/12 mb-4 `}>
+                <Text style={tw`text-red-500  text-xs w-10/12 mb-5 mt-1 `}>
                   {errors.usuario}
                 </Text>
 
                 <View
-                  style={tw`flex-row bg-zinc-100 w-10/12 rounded  justify-between items-center ${
+                  style={tw`flex-row bg-white rounded-3xl w-10/12 shadow-2xl  justify-between items-center ${
                     errors.contrasenia ? "border border-red-500 border-2" : ""
                   }`}
                 >
@@ -110,12 +115,12 @@ export const FormLogin = () => {
                     />
                   </View>
                 </View>
-                <Text style={tw`text-red-500  text-xs w-10/12 mb-4 `}>
+                <Text style={tw`text-red-500  text-xs w-10/12 mb-4 mt-1 `}>
                   {errors.contrasenia}
                 </Text>
 
                 <TouchableOpacity
-                  style={tw`mt-3 bg-blue-800 w-10/12 p-3 rounded justify-center items-center`}
+                  style={tw`mt-3 bg-[#2C305A] w-10/12 p-3 rounded-3xl justify-center items-center`}
                   onPress={handleSubmit as (values: any) => void }
                 >
                   <Text style={tw`text-white text-lg`}>Ingresar</Text>

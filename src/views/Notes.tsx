@@ -15,7 +15,7 @@ export const Notes = () => {
 
   useEffect(() => {
     notesCources({
-      codigoUniversitario: 2017059489,
+      codigoUniversitario: 2017059277,
       idSemestre: idSemester,
       itemEstamento: idStament,
     });
