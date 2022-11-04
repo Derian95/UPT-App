@@ -49,13 +49,13 @@ export const FormLogin = () => {
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <>
-              <View style={tw`w-10/12 mb-10`}>
-                <Text style={tw`text-3xl text-black`}>Bienvenido otra vez!!</Text>
-                <Text style={tw`text-sm text-[#8B8B8B]`}>Inicie sesion para poder continuar</Text>
+              <View style={tw`w-9/12 mb-8`}>
+                <Text style={tw`text-2xl text-black font-bold `}>Bienvenido otra vez!!</Text>
+                <Text style={tw`text-xs text-[#8B8B8B]`}>Inicie sesion para poder continuar</Text>
               </View>
              
                 <View
-                  style={tw`flex-row bg-white rounded-3xl w-10/12 shadow-2xl   justify-between items-center ${
+                  style={tw`flex-row bg-white rounded-3xl w-10/12 shadow-2xl justify-between items-center ${
                     errors.usuario ? "border border-red-500 border-2" : ""
                   }`}
                 >
@@ -79,7 +79,7 @@ export const FormLogin = () => {
                     source={require("../../../assets/user.png")}
                   />
                 </View>
-                <Text style={tw`text-red-500  text-xs w-10/12 mb-5 mt-1 `}>
+                <Text style={tw`text-red-500  text-xs w-9/12 mb-3 mt-1 `}>
                   {errors.usuario}
                 </Text>
 
@@ -115,7 +115,7 @@ export const FormLogin = () => {
                     />
                   </View>
                 </View>
-                <Text style={tw`text-red-500  text-xs w-10/12 mb-4 mt-1 `}>
+                <Text style={tw`text-red-500  text-xs w-9/12 mb-4 mt-1 `}>
                   {errors.contrasenia}
                 </Text>
 
