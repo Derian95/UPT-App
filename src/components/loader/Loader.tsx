@@ -5,9 +5,9 @@ import { useRef } from "react";
 
 export const Loader = () => {
   const animation = useRef<LottieView>(null);
-
+  const dark=true
   return (
-<View style={tw`h-full h-full justify-center items-center bg-white`}>
+<View style={tw`h-full h-full justify-center items-center bg-white z-50 ${dark?'bg-[#2C305A]':'bg-white' }`}>
       <View style={tw` justify-center items-center  h-[55]`}>
         <Image
           style={{
@@ -17,7 +17,7 @@ export const Loader = () => {
             position: 'absolute',
             top: 0
           }}
-          source={require("../../assets/logo2.png")}
+          source={dark?require("../../../assets/logoupt.png"):require("../../../assets/logo2.png")}
         />
         <LottieView
           autoPlay
@@ -26,7 +26,7 @@ export const Loader = () => {
             width: 200,
             height: 200,
           }}
-          source={require('../lottie/loader.json')}
+          source={dark?require('../../lottie/loaderWhite.json'):require('../../lottie/loader.json')}
         />
 
       </View>

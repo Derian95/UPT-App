@@ -1,25 +1,49 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
-import tw from 'twrnc'
-import { useNavigation } from '@react-navigation/native'
-import { propsStack } from '../../navigation/models/stackProps'
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import tw from "twrnc";
+import { useNavigation } from "@react-navigation/native";
+import { propsStack } from "../../navigation/models/stackProps";
+import { MotiView, useAnimationState } from 'moti';
+import React from 'react';
 
 export const CardAssistance = () => {
-   const navigation = useNavigation<propsStack>()
-   return (
-      <TouchableOpacity
-         style={tw`bg-[#6093BF]   w-85 h-25 rounded-md items-start justify-between p-4 mb-6`}
-         onPress={() => {
-            navigation.navigate('Attendance')
-         }}
-      >
-         <View style={tw`flex-row justify-between w-full h-full items-center`}>
-            <Text style={tw`text-white text-3xl font-medium `}>ASISTENCIA</Text>
+  const navigation = useNavigation<propsStack>();
 
-            <Image
-               style={tw`w-20 h-20`}
-               source={require('../../../assets/asistencia2.png')}
-            />
+
+  const cardIn=useAnimationState({
+    from:{
+       translateX:-100,
+       opacity:0
+    },
+    to:{
+       translateX:0,
+       opacity:1
+    }
+ })
+ 
+  return (
+    <MotiView 
+    state={cardIn}
+    transition={{type:'spring'}}
+    style={tw`w-90 h-30 m-2 rounded-3xl bg-white shadow-2xl `}>
+      <TouchableOpacity
+        style={tw`p-4 rounded-3xl  h-[100%]  rounded-md items-start justify-between mb-6`}
+        onPress={() => {
+          navigation.navigate("Attendance");
+        }}
+      >
+        <View style={tw`flex-row justify-between w-full h-full items-center`}>
+         <View>
+          <Text style={tw`text-black text-3xl font-medium `}>ASISTENCIA</Text>
+            <Text style={tw`text-[#8B8B8B] text-sm  `}>Consulta tus asistencias</Text>
+
          </View>
+          
+          <Image
+            style={[{resizeMode:'contain'},tw`w-18 h-18`]}
+            source={require("../../../assets/timeImg.png")}
+          />
+        </View>
       </TouchableOpacity>
-   )
-}
+    </MotiView>
+  );
+};

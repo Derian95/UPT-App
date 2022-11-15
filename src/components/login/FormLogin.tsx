@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useLoginUserMutation } from "../../store/api/upt-api-auth";
 import {
@@ -15,12 +15,13 @@ import tw from "twrnc";
 
 import { propsStack } from "../../navigation/models";
 import { validationSchemaLogin } from "../../utils";
+import LottieView from 'lottie-react-native';
 
 export const FormLogin = () => {
   const navigation = useNavigation<propsStack>();
   const [pass, setPass] = useState(true);
   const [loginUser, { data, isSuccess, isLoading }] = useLoginUserMutation();
-
+  const animation = useRef<LottieView>(null);
   
 
   if(isLoading){
@@ -59,25 +60,26 @@ export const FormLogin = () => {
                     errors.usuario ? "border border-red-500 border-2" : ""
                   }`}
                 >
+                   <Image
+                    style={{
+                      width: 25,
+                      height: 25,
+                      resizeMode: "stretch",
+                      marginLeft: 15,
+                    }}
+                    source={require("../../../assets/newUser.png")}
+                  />
                   <TextInput
                     keyboardType="numeric"
                     maxLength={10}
-                    style={tw`text-gray-500 text-base  flex-1 ml-2 p-3`}
+                    style={tw`text-gray-500 text-sm  flex-1 p-3`}
                     placeholder={"Ingrese su codigo :D"}
                     onChangeText={handleChange("usuario")}
                     onBlur={handleBlur("usuario")}
                     value={values.usuario}
                   />
 
-                  <Image
-                    style={{
-                      width: 30,
-                      height: 30,
-                      resizeMode: "stretch",
-                      marginRight: 10,
-                    }}
-                    source={require("../../../assets/user.png")}
-                  />
+                 
                 </View>
                 <Text style={tw`text-red-500  text-xs w-9/12 mb-3 mt-1 `}>
                   {errors.usuario}
@@ -88,11 +90,20 @@ export const FormLogin = () => {
                     errors.contrasenia ? "border border-red-500 border-2" : ""
                   }`}
                 >
+                    <Image
+                    style={{
+                      width: 25,
+                      height: 25,
+                      resizeMode: "stretch",
+                      marginLeft: 15,
+                    }}
+                    source={require("../../../assets/lock2.png")}
+                  />
                   <TextInput
                     keyboardType="numeric"
                     secureTextEntry={pass ? true : false}
                     maxLength={6}
-                    style={tw`text-gray-500 text-base flex-1 ml-2 p-3`}
+                    style={tw`text-gray-500 text-sm flex-1  p-3`}
                     placeholder={"Contraseña"}
                     onChangeText={handleChange("contrasenia")}
                     onBlur={handleBlur("contrasenia")}
@@ -102,15 +113,15 @@ export const FormLogin = () => {
                   <View onTouchEnd={() => setPass((prev) => !prev)}>
                     <Image
                       style={{
-                        width: 30,
-                        height: 30,
+                        width: 25,
+                        height: 25,
                         resizeMode: "stretch",
                         marginRight: 10,
                       }}
                       source={
                         pass
-                          ? require("../../../assets/show.png")
-                          : require("../../../assets/unshow.png")
+                          ? require("../../../assets/eyed.png")
+                          : require("../../../assets/uneyed.png")
                       }
                     />
                   </View>
@@ -120,10 +131,21 @@ export const FormLogin = () => {
                 </Text>
 
                 <TouchableOpacity
-                  style={tw`mt-3 bg-[#2C305A] w-10/12 p-3 rounded-3xl justify-center items-center`}
+                  style={tw`mt-1 ${isLoading ? 'bg-[#8B8B8B]':'bg-[#2C305A]'} w-10/12 h-15 rounded-3xl  flex-row justify-center items-center`}
                   onPress={handleSubmit as (values: any) => void }
                 >
-                  <Text style={tw`text-white text-lg`}>Ingresar</Text>
+                  <Text style={tw`text-white text-lg  `}>Ingresar</Text>
+                  {
+                    isLoading?
+                  <LottieView
+                    autoPlay
+                    ref={animation}
+                    style={tw` w-[60%] h-[100%] absolute right-0`}
+                    source={require('../../lottie/buttonLoader.json')}
+                  />
+                  :
+                  null
+                  }
                 </TouchableOpacity>
 
               

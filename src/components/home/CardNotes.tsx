@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { propsStack } from '../../navigation/models/stackProps'
 import { FC } from 'react'
+import { MotiView, useAnimationState } from 'moti'
 
 
 interface Props{
@@ -15,9 +16,24 @@ export const CardNotes:FC<Props> = ({idSemester, idStament}) => {
    
    const navigation = useNavigation<propsStack>()
 
+   const cardIn=useAnimationState({
+      from:{
+         translateX:-100,
+         opacity:0
+      },
+      to:{
+         translateX:0,
+         opacity:1
+      }
+   })
+   
    return (
+      <MotiView 
+      state={cardIn}
+      transition={{type:'spring', delay:600}}
+      style={tw`w-90 h-30 m-2 rounded-3xl bg-white shadow-2xl `}>
       <TouchableOpacity
-         style={tw`bg-[#42BF56]  w-85 h-25 rounded-md items-start justify-between p-4 mb-6 `}
+         style={tw`p-4 rounded-3xl  h-[100%]  rounded-md items-start justify-between mb-6 `}
          onPress={() => {
             navigation.navigate('Notes',{
                idSemester:idSemester,
@@ -26,13 +42,17 @@ export const CardNotes:FC<Props> = ({idSemester, idStament}) => {
          }}
       >
          <View style={tw`flex-row justify-between w-full h-full items-center`}>
-            <Text style={tw`text-white text-3xl font-medium  `}>NOTAS</Text>
-
+            <View>
+            <Text style={tw`text-black text-3xl font-medium`}>NOTAS</Text>
+            <Text style={tw`text-[#8B8B8B] text-sm  `}>Consulta la calificacion de tus cursos</Text>
+            </View>
+           
             <Image
-                style={[tw`w-18 h-25`,{resizeMode:'stretch'}]}
-               source={require('../../../assets/notas2.png')}
+                style={[{resizeMode:'contain'},tw`w-18 h-18`]}
+               source={require('../../../assets/notasImg.png')}
             />
          </View>
       </TouchableOpacity>
+      </MotiView>
    )
 }

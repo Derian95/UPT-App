@@ -15,6 +15,14 @@
         promedio: number;
         criterios: Criterion[];
     }
+    
+    interface Test extends Units{
+
+    }
+
+
+       
+
 
     export interface Grade {
         idMatCursoMatricula: number;

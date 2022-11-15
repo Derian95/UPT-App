@@ -8,7 +8,7 @@ export const Header = () => {
       height: 90,
       resizeMode: "contain",
     }}
-    source={require("../../../assets/logo.png")}
+    source={require("../../../assets/logoupt.png")}
   />
   )
 }

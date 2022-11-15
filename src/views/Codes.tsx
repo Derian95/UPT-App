@@ -6,8 +6,8 @@ import { useAppDispatch } from "../store/hooks";
 import { useGetCodesQuery } from "../store/api/upt-api";
 import { setSemesters } from "../store/state/semestersSlice";
 import { changeModalShow, setCodes, setSelectedCode } from "../store/state";
-import { BlurScreens } from "../components/ui/BlurScreens";
 import { Layout } from "../components/ui/layout/Layout";
+import { Loader } from "../components/loader";
 
 export const Codes = () => {
   const array: string[] = [];
@@ -26,7 +26,7 @@ export const Codes = () => {
     }
   }, [getCodes]);
 
-  if (getCodes.isLoading) return <Text>Cargando</Text>;
+  if (getCodes.isLoading) return <Loader/>;
 
   return (
     // <View style={{ height: "100%", backgroundColor:'black' }}>
@@ -35,7 +35,13 @@ export const Codes = () => {
     //   <Modal />
     // </View>
 
-    <Layout header={<HeaderCodes/>} children2={<Semester/>}/>
+    <Layout 
+    header={
+     <HeaderCodes/>
+    } 
+    children2={
+      <Semester/>}
+    />
     
   );
 };

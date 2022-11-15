@@ -19,6 +19,7 @@ export type propsNavigationStack={
     Attendance:undefined
     Schedule:undefined
     Codes:undefined
+    OnBoarding:undefined
 }
 
 /*
