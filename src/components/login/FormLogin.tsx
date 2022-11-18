@@ -16,28 +16,81 @@ import tw from "twrnc";
 import { propsStack } from "../../navigation/models";
 import { validationSchemaLogin } from "../../utils";
 import LottieView from 'lottie-react-native';
+import { MotiView } from 'moti';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const FormLogin = () => {
   const navigation = useNavigation<propsStack>();
   const [pass, setPass] = useState(true);
-  const [loginUser, { data, isSuccess, isLoading }] = useLoginUserMutation();
+  const [loginUser, { data, isSuccess, isLoading, isError }] = useLoginUserMutation();
   const animation = useRef<LottieView>(null);
   
+interface TRA{
+  nombre:string
+  apellido:string
+  codigo:string
+  refresh:string
 
-  if(isLoading){
-    console.log(isLoading)
+}
+  const tra ={
+    nombre:"derian",
+    apellido:"herrera"
   }
+  const storeData = async (value:TRA) => {
+    const ra= JSON.stringify(value)
+    try {
+      await AsyncStorage.setItem('derian', ra)
+    } catch (e) {
+      // saving error
+    }
+  }
+  
+  const getData = async () => {
+    
+    try {
+     //const jsonValue:TRA={}
+
+      const jsonValue = await AsyncStorage.getItem('derian')
+       //jsonValue != null ? JSON.parse(jsonValue) : null;
+       const traaaa:TRA = JSON.parse(jsonValue as any)
+       console.log('async')
+       console.log(traaaa.apellido)
+       console.log(traaaa.nombre)
+       console.log(traaaa.codigo)
+       console.log(traaaa.refresh)
+      
+    } catch(e) {
+      // error reading value
+    }
+  }
+  
   useEffect(() => {
     if(isSuccess){
       console.log(data)
   
-      data.data==null? alert("Datos erroneos"):navigation.replace('Codes')
+      data.data==null? alert("Incorrecto"):
+      null
+      //navigation.replace('Codes')
+      storeData({
+        apellido:data.data.identificadorUsuario,
+        codigo:data.data.informacionGenerica.codigo,
+        nombre:data.data.informacionGenerica.email,
+        refresh:data.data.refreshToken
+      })
     }
+
+     getData()
+      
+
+   
   
   }, [data])
   
+  
+
   return (
-    
+   
           <Formik
             initialValues={{
               idSistema: 0,
@@ -48,17 +101,19 @@ export const FormLogin = () => {
             validationSchema={validationSchemaLogin}
             onSubmit={(values) => loginUser({...values}).unwrap()}
           >
+            
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <>
+              
               <View style={tw`w-9/12 mb-8`}>
                 <Text style={tw`text-2xl text-black font-bold `}>Bienvenido otra vez!!</Text>
-                <Text style={tw`text-xs text-[#8B8B8B]`}>Inicie sesion para poder continuar</Text>
+                <Text style={tw`text-xs text-[#8B8B8B] `}>Inicie sesion para poder continuar</Text>
               </View>
              
                 <View
-                  style={tw`flex-row bg-white rounded-3xl w-10/12 shadow-2xl justify-between items-center ${
-                    errors.usuario ? "border border-red-500 border-2" : ""
-                  }`}
+                  style={tw`flex-row bg-zinc-100  rounded-3xl w-10/12 shadow-2xl justify-between items-center  ${
+                    errors.usuario ? "border border-red-500 border-2" : "" 
+                  } `}
                 >
                    <Image
                     style={{
@@ -86,9 +141,9 @@ export const FormLogin = () => {
                 </Text>
 
                 <View
-                  style={tw`flex-row bg-white rounded-3xl w-10/12 shadow-2xl  justify-between items-center ${
+                  style={tw`flex-row bg-zinc-100 dark:bg-red-500 rounded-3xl w-10/12 shadow-2xl  justify-between items-center ${
                     errors.contrasenia ? "border border-red-500 border-2" : ""
-                  }`}
+                  }   `}
                 >
                     <Image
                     style={{
@@ -103,7 +158,7 @@ export const FormLogin = () => {
                     keyboardType="numeric"
                     secureTextEntry={pass ? true : false}
                     maxLength={6}
-                    style={tw`text-gray-500 text-sm flex-1  p-3`}
+                    style={tw`text-gray-500 text-sm flex-1  p-3 `}
                     placeholder={"Contraseña"}
                     onChangeText={handleChange("contrasenia")}
                     onBlur={handleBlur("contrasenia")}
@@ -131,7 +186,7 @@ export const FormLogin = () => {
                 </Text>
 
                 <TouchableOpacity
-                  style={tw`mt-1 ${isLoading ? 'bg-[#8B8B8B]':'bg-[#2C305A]'} w-10/12 h-15 rounded-3xl  flex-row justify-center items-center`}
+                  style={tw`mt-1 ${isLoading ? 'bg-[#8B8B8B]':'bg-[#2C305A]'} w-10/12 p-3 rounded-3xl  flex-row justify-center items-center`}
                   onPress={handleSubmit as (values: any) => void }
                 >
                   <Text style={tw`text-white text-lg  `}>Ingresar</Text>
@@ -152,7 +207,6 @@ export const FormLogin = () => {
               </>
             )}
           </Formik>
-
           
   );
 };

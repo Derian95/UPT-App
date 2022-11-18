@@ -31,7 +31,7 @@ export const CardNotes:FC<Props> = ({idSemester, idStament}) => {
       <MotiView 
       state={cardIn}
       transition={{type:'spring', delay:600}}
-      style={tw`w-90 h-30 m-2 rounded-3xl bg-white shadow-2xl `}>
+      style={tw`w-90 h-30 m-2 rounded-3xl bg-zinc-100 shadow-2xl `}>
       <TouchableOpacity
          style={tw`p-4 rounded-3xl  h-[100%]  rounded-md items-start justify-between mb-6 `}
          onPress={() => {

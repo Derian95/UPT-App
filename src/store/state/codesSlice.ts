@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+export interface CodesModal{
+    code:string
+    name:string
+}
 export interface CodesState {
-    codes:string[]
+    codes:CodesModal[]
     selected:string
     modalShow:boolean
 }
@@ -19,11 +22,12 @@ export const codesSlice = createSlice({
     name: 'codes',
     initialState,
     reducers: {
-        setCodes:(state, action:PayloadAction<string[]>)=>{
+        setCodes:(state, action:PayloadAction<CodesModal[]>)=>{
             //action.payload.forEach((item) => state.codes.push(item))
+            //state.codes=action.payload
             state.codes=action.payload
         },
-        addCodes:(state, action:PayloadAction<string>)=>{
+        addCodes:(state, action:PayloadAction<CodesModal>)=>{
             state.codes.push(action.payload)
         },
         setSelectedCode:(state, action:PayloadAction<string>)=>{

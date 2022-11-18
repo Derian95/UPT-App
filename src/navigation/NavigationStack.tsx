@@ -3,14 +3,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { propsNavigationStack } from './models'
 
 import { Home, Login, Notes, Attendance, Schedule, Codes, OnBoarding } from '../views'
-import { Button } from 'react-native'
+import { Button, Image } from 'react-native'
+import React from 'react'
 import { ButtonDarkMode } from '../components/ui'
+//import { ButtonDarkMode } from '../components/ui'
 const { Navigator, Screen } = createNativeStackNavigator<propsNavigationStack>()
 
 export const NavigationStack = () => {
    return (
       <NavigationContainer>
-         <Navigator initialRouteName='Codes'>
+         <Navigator initialRouteName='Login'>
             <Screen
                name='Login'
                component={Login}
@@ -32,7 +34,7 @@ export const NavigationStack = () => {
                   animation: 'slide_from_right',
                   headerBackTitleVisible:true,
                   headerTransparent:true,
-                  headerShown:true
+                  headerShown:false
                   
 
                }}
@@ -46,7 +48,7 @@ export const NavigationStack = () => {
                   headerTintColor: 'white',
                   headerTitleAlign: 'center',
                   animation: 'slide_from_right',
-                  headerRight: () => <ButtonDarkMode />,
+                  //headerRight: () => <ButtonDarkMode />,
                   title: 'Asistencia',
                }}
             />
@@ -79,14 +81,22 @@ export const NavigationStack = () => {
                   headerTitleAlign: 'center',
                   headerShown: true,
                   headerTransparent:true,
-
                   headerRight: () => (
-                     <Button
-                        onPress={() => alert('This is a button!')}
-                        title='Info'
-                        color='transparent'
+                     // <Button
+                     //    onPress={() => alert('This is a button!')}
+                     //    title='Info'
+                     //    color='transparent'
                         
-                     />
+                     // />
+                    // <ButtonDarkMode/>
+                    <Image
+                    style={{
+                      width: 28,
+                      height: 28,
+                      resizeMode: "contain",
+                    }}
+                    source={require("../../assets/logoupt.png")}
+                  />
                   ),
                   headerBackVisible: true,
                   title: 'UPT',

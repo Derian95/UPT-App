@@ -1,25 +1,19 @@
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text } from 'react-native'
 import { HeaderNotes, NotesList } from '../components/notas'
 import tw from 'twrnc'
-import { useNavigation, useRoute } from '@react-navigation/native'
-import { propsStack, routeProps } from '../navigation/models'
+import {  useRoute } from '@react-navigation/native'
+import {  routeProps } from '../navigation/models'
 import { useGetNotesSemesterMutation } from '../store/api/upt-api'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Loader } from '../components/loader'
-import { Layout } from '../components/ui/layout/Layout'
+
 export const Notes = () => {
-   const navigate = useNavigation<propsStack>()
    const route = useRoute<routeProps>()
    const { idSemester, idStament } = route.params
-   const [notesCources, { data, isLoading, isSuccess, isError }] =
+   const [notesCources, { data, isLoading, isSuccess }] =
       useGetNotesSemesterMutation()
 
-   const [header, setHeader] = useState(false)
-   const changeHEader = () => {
-      navigate.setOptions({
-         headerShown: true,
-      })
-   }
+  
    useEffect(() => {
       notesCources({
          codigoUniversitario: 2017059277,
@@ -60,38 +54,4 @@ export const Notes = () => {
          </View>
       </View>
    )
-}
-{
-   /* <Layout
-            header={
-               <>
-                  {isSuccess ? (
-                     data.data != null ? (
-                        <HeaderNotes
-                           ciclo={data.data[0].cicloUbicacion}
-                           matricula={data.data[0].matriculaPagada}
-                           fecha={data.data[0].fecha}
-                        />
-                     ) : (
-                        <Text style={tw`text-white`}>
-                           {data.mensajeError[0].mensaje}
-                        </Text>
-                     )
-                  ) : null}
-               </>
-            }
-            children2={
-               <>
-                  {isSuccess ? (
-                     data.data != null ? (
-                        <NotesList notes={data.data[0]} />
-                     ) : (
-                        <Text style={tw`text-white`}>
-                           {data.mensajeError[0].mensaje}
-                        </Text>
-                     )
-                  ) : null}
-               </>
-            }
-         /> */
 }

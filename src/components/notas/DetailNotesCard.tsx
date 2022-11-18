@@ -11,7 +11,7 @@ export const DetailNotesCard: FC<Props> = ({ units }) => {
 
    const {criterios,nombre, peso,promedio }=units
    return (
-      <View style={tw` bg-white ml-1 mr-1 mt-5 border p-1`}>
+      <View style={tw` bg-white ml-1 mr-1 mt-5 border p-1 border-zinc-400`}>
          <View style={tw`flex-row justify-between items-center`}>
             <Text style={tw`text-[#2C305A] text-xl font-medium w-8/10`}>
                {nombre}
@@ -23,8 +23,8 @@ export const DetailNotesCard: FC<Props> = ({ units }) => {
 
          <View style={tw`flex-row justify-between mt-3 p-2 bg-[#DCD9D9] `}>
             <Text style={tw` w-4/12 text-black w-7/12 font-semibold`}>Descripcion</Text>
-            <Text style={tw` text-black w-3/12 font-semibold`}>Peso</Text>
-            <Text style={tw` text-black w-2/12 font-semibold`}>Nota</Text>
+            <Text style={tw` text-black w-3/12 font-semibold  text-center`}>Peso</Text>
+            <Text style={tw` text-black w-2/12 font-semibold  text-center`}>Nota</Text>
          </View>
          
          {criterios.map(({nombre, peso, promedio}) => (
@@ -33,15 +33,15 @@ export const DetailNotesCard: FC<Props> = ({ units }) => {
                   <Text style={tw`text-[#3F3F3F] w-7/12 p-1 capitalize`}>
                      {nombre}
                   </Text>
-                  <Text style={tw`text-[#3F3F3F]  w-3/12 p-1`}>{peso}%</Text>
-                  <Text style={tw`text-gray-400   w-2/12 p-1 ${promedio <=10.5 ?'text-red-400': 'text-blue-400'}`}>{promedio}</Text>
+                  <Text style={tw`text-[#3F3F3F]  w-3/12 p-1  text-center`}>{peso}%</Text>
+                  <Text style={tw`text-gray-400   w-2/12 p-1 text-center ${promedio <=10.5 ?'text-red-400': 'text-blue-400'}`}>{promedio}</Text>
                </View>
                <View style={tw`w-12/12 h-.3 bg-[#DCD9D9] `}></View>
             </View>
          ))}
          <View style={tw`flex-row mt-2 mr-2 justify-end `}>
          <Text style={tw`text-[#3F3F3F] font-semibold text-xl `}>Promedio de la unidad : </Text>
-         <Text style={tw`text-[#3F3F3F] font-semibold text-xl `}>{promedio}</Text>
+         <Text style={tw`text-[#3F3F3F] font-bold text-xl mb-4 ${promedio <=10.5 ?'text-red-900': 'text-blue-500'}`}>{promedio}</Text>
 
          </View>
       </View>

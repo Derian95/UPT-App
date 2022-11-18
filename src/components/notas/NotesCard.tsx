@@ -1,14 +1,13 @@
-import { FC, useEffect, useReducer, useState } from 'react'
-import { View, Text, FlatList, Button, Pressable } from 'react-native'
+import { FC, useEffect, useState } from 'react'
+import { View, Text, FlatList, Pressable, Image } from 'react-native'
 import { DetailNotesCard } from './DetailNotesCard'
-import { IconButton, MD3Colors } from 'react-native-paper'
 import tw from 'twrnc'
-import { MotiView, useAnimationState } from 'moti'
+import { MotiView } from 'moti'
 import { Grade } from '../../interfaces'
 
 interface Props {
    cources: Grade
-   index:number
+   index: number
 }
 export const NotesCard: FC<Props> = ({ cources, index }) => {
    const {
@@ -27,45 +26,45 @@ export const NotesCard: FC<Props> = ({ cources, index }) => {
       setShow(false)
    }, [])
 
-
    const pressButton = () => {
       setShow((prev) => !prev)
    }
    return (
       <MotiView
-      from={{translateY:50, opacity:0}}
-      animate={{translateY:0, opacity:1}}
-      transition={{type:'timing',duration:600, delay:index*200}}
+         from={{ translateY: 50 }}
+         animate={{ translateY: 0 }}
+         transition={{ type: 'timing', duration: 600, delay: index * 200 }}
          style={tw`bg-[#ffffff] h-auto w-full mt-5 justify-center items-center `}
       >
          <Pressable
             onPress={pressButton}
-            style={tw` pr-2  items-center flex-row  w-95 justify-between bg-white shadow-xl  rounded h-20   `}
+            style={tw` p-3  items-center flex-row  w-95 justify-between bg-zinc-100 shadow-xl  rounded h-20   `}
          >
             <Text
-               style={tw` text-base ml-2 max-w-[60%] text-black ${
+               style={tw` text-base ml-2 max-w-[70%] text-black ${
                   show ? 'font-black' : ''
                }`}
             >
                {asignatura}
             </Text>
+            
             <MotiView
                animate={{
-                  rotateZ: show ? '-90deg' : '0deg',
+                  rotateZ: show ? '180deg' : '0deg',
                }}
             >
-               <IconButton
-                  icon={'arrow-down-drop-circle'}
-                  iconColor={'#2C305A'}
-                  size={30}
-                  onPress={() => setShow(!show)}
+              
+               <Image
+                  style={{
+                     width: 20,
+                     height: 12,
+                     resizeMode: 'stretch',
+                  }}
+                  source={require('../../../assets/arrow.png')}
                />
             </MotiView>
          </Pressable>
          <MotiView
-            // state={animationList}
-            // animate={{display:show?500:0}}
-            // transition={{type:'timing', duration:500}}
             style={tw`${
                show ? 'h-auto' : 'h-0'
             } w-95 mt-0.5 shadow-xl bg-white`}

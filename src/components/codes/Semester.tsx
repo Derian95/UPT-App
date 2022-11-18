@@ -14,7 +14,7 @@ export const Semester = () => {
    const dispatch = useAppDispatch()
    const codes = useAppSelector((state) => state.codes.codes)
 
-   if (semesters == null) return <Text>Cargandin***</Text>
+   //if (semesters == null) return <Text>Cargandin***</Text>
    const { codigoUniversitario, escuela, tipo, semestres, itemEstamento } =
       semesters
 
@@ -49,7 +49,7 @@ export const Semester = () => {
          <MotiText
             state={traslateIn}
             transition={{ type: 'timing', duration: 1000 }}
-            style={tw`text-[#2C305A]  mb-5 ml-2  w-10/11 text-base`}
+            style={tw`text-[#2C305A]  mb-5 ml-2  w-10/11 text-sm font-semibold`}
          >
             Selecciona el semestre academico
          </MotiText>

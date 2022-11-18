@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Appearance, Text } from 'react-native'
 import { NavigationStack } from './src/navigation'
 import { Provider } from 'react-redux'
 import { store } from './src/store'
@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar'
 function App() {
    return (
       <Provider store={store}>
-         <StatusBar backgroundColor='transparent' />
+         <StatusBar backgroundColor='#2C305A' style='light' />
          <NavigationStack />
       </Provider>
    )

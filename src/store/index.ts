@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 import  codesReducer  from './state/codesSlice'
+import uiReducer from './state/uiSlice'
 import semestersReducer from './state/semestersSlice'
 //api
 import { uptApi } from './api/upt-api'
@@ -10,6 +11,7 @@ import { uptApiAuth } from './api/upt-api-auth'
 export const store = configureStore({
   reducer: {
     codes:codesReducer,
+    ui:uiReducer,
     semesters:semestersReducer,
     [uptApi.reducerPath]: uptApi.reducer,
     [uptApiAuth.reducerPath]: uptApiAuth.reducer,

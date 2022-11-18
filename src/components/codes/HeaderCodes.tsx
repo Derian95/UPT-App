@@ -13,7 +13,7 @@ export const HeaderCodes = () => {
    const { codigoUniversitario, escuela, tipo, semestres, itemEstamento } =
       semesters
 
-   if (semesters == null) return <Text>Cargandin***</Text>
+  // if (semesters == null) return <Text>Cargandin***</Text>
 
    const fadeInt = useAnimationState({
       from: {
@@ -32,7 +32,7 @@ export const HeaderCodes = () => {
             <MotiText
                state={fadeInt}
                transition={{ type: 'timing', duration: 1500, delay: 600 }}
-               style={tw` text-white text-2xl font-bold mb-4 text-center p-2`}
+               style={tw` text-white text-xl font-bold mb-4 text-center p-2 capitalize`}
             >
                {escuela}
             </MotiText>
